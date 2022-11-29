@@ -42,7 +42,7 @@ export default NanoService({
     }),
 
     buyPickles: (_ctx, [store, maxSpend]) => {
-      maxSpend = Math.max(store.cash, maxSpend);
+      maxSpend = Math.min(store.cash, maxSpend);
       const volume = Math.floor(maxSpend / wholesalePicklePrice);
 
       store.cash -= volume * wholesalePicklePrice;
