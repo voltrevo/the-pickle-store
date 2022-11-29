@@ -2,13 +2,7 @@ import { Keccak256 } from "../deps.ts";
 import toBuffer from "../nanocluster/comms/toBuffer.ts";
 import NanoService from "../nanocluster/lib/NanoService.ts";
 import nt from "../nanocluster/nt/mod.ts";
-
-const PickleStore = nt.object({
-  cash: nt.number, // cents
-  pickles: nt.number,
-  picklePrice: nt.number,
-  storeAge: nt.number, // days
-});
+import PickleStore from "../types.ts";
 
 const wholesalePicklePrice = 30;
 
