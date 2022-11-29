@@ -87,8 +87,14 @@ class Rng {
     );
   }
 
+  Uint32() {
+    const hash = this.Hash();
+
+    return hash[0] + 256 * hash[1] + (256 ** 2) * hash[2] + (256 ** 3) * hash[3];
+  }
+
   Uniform01() {
-    return new DataView(this.Hash()).getUint32(0, true) / (2 ** 32);
+    return this.Uint32() / (2 ** 32);
   }
 
   Normal() {
