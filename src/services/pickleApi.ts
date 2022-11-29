@@ -28,13 +28,13 @@ export default NanoService({
       const id = RandomId();
 
       const store = await pickleSim.init();
-      await storage.set([id, 'pickleStore'], store);
+      await storage.set([id, "pickleStore"], store);
 
       return id;
     },
 
     async PickleStore({ storage }, [id]) {
-      const store = await storage.get([id, 'pickleStore']);
+      const store = await storage.get([id, "pickleStore"]);
 
       if (store === nil) {
         return nil;
@@ -46,28 +46,28 @@ export default NanoService({
     },
 
     async setPicklePrice({ storage }, [id, price]) {
-      const store = await storage.get([id, 'pickleStore']);
+      const store = await storage.get([id, "pickleStore"]);
       nt.assert(store, PickleStore);
       store.picklePrice = price;
-      await storage.set([id, 'pickleStore'], store);
+      await storage.set([id, "pickleStore"], store);
 
       return nil;
     },
 
     async buyPickles({ storage, peers: { pickleSim } }, [id, maxSpend]) {
-      let store = await storage.get([id, 'pickleStore']);
+      let store = await storage.get([id, "pickleStore"]);
       nt.assert(store, PickleStore);
       store = await pickleSim.buyPickles(store, maxSpend);
-      await storage.set([id, 'pickleStore'], store);
+      await storage.set([id, "pickleStore"], store);
 
       return nil;
     },
 
     async nextDay({ storage, peers: { pickleSim } }, [id]) {
-      let store = await storage.get([id, 'pickleStore']);
+      let store = await storage.get([id, "pickleStore"]);
       nt.assert(store, PickleStore);
       store = await pickleSim.nextDay(store, `${id}:day${store.storeAge}`);
-      await storage.set([id, 'pickleStore'], store);
+      await storage.set([id, "pickleStore"], store);
 
       return nil;
     },

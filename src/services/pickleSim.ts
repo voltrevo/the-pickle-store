@@ -14,7 +14,7 @@ function CustomerPrice(rng: Rng) {
   const stdevMulCustomerPrice = 2;
 
   return meanCustomerPrice * Math.exp(
-    rng.Normal() * Math.log(stdevMulCustomerPrice)
+    rng.Normal() * Math.log(stdevMulCustomerPrice),
   );
 }
 
@@ -84,7 +84,8 @@ class Rng {
   Uint32() {
     const hash = this.Hash();
 
-    return hash[0] + 256 * hash[1] + (256 ** 2) * hash[2] + (256 ** 3) * hash[3];
+    return hash[0] + 256 * hash[1] + (256 ** 2) * hash[2] +
+      (256 ** 3) * hash[3];
   }
 
   Uniform01() {
